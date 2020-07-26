@@ -15,7 +15,7 @@ func _ready():
 #func _process(delta):
 #	pass
 
-func propagate_message(var message: String):
+func propagate_message(var message: Dictionary):
 	for child in self.get_children():
 		if child.is_in_group("Components"):
 			child.receive_message(message)

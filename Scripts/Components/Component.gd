@@ -16,5 +16,5 @@ func _ready():
 #	pass
 
 # To be implimented in inherited classes
-func receive_message(var message: String):
+func receive_message(var message: Dictionary):
 	pass
