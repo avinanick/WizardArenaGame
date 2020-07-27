@@ -16,6 +16,7 @@ signal start_move
 func _ready():
 	set_process(false)
 	self.connect("start_move", self, "add_movement")
+	self.connect("end_move", self, "subtract_movement")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -25,6 +26,9 @@ func _process(delta):
 func add_movement(var direction):
 	set_process(true)
 	current_directions[direction] = true
+	calculate_overall_move()
+
+func calculate_overall_move():
 	move_direction = Vector2(0,0)
 	if current_directions["Up"]:
 		move_direction.y += 1
@@ -43,4 +47,7 @@ func receive_message(var message: Dictionary):
 		emit_signal("end_move", message["EndMove"])
 
 func subtract_movement(var direction):
-	pass
+	current_directions[direction] = false
+	calculate_overall_move()
+	if move_direction.length() < 0.5:
+		set_process(false)
