@@ -1,8 +1,7 @@
 extends "res://Scripts/Components/Component.gd"
 
 
-export var move_speed: float = 1.0
-export var min_move_time: float = 0 
+export var move_speed: float = 1.0 
 
 var move_direction: Vector2 = Vector2(0,0)
 var current_directions: Dictionary = {"Up":false,
@@ -16,6 +15,7 @@ signal start_move
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_process(false)
+	self.connect("start_move", self, "add_movement")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
