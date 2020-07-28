@@ -26,7 +26,7 @@ func _process(delta):
 	# for now I'm using move_and_collide, I may later decide on move_and_slide depending on 
 	# behavior
 	var movement: Vector3 = Vector3(move_direction.y, 0, move_direction.x)
-	main_body.move_and_collide(movement * delta)
+	main_body.move_and_collide(movement * delta * move_speed)
 
 func add_movement(var direction):
 	set_process(true)
