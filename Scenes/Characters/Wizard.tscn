@@ -26,5 +26,6 @@ material/0 = null
 [node name="HealthComponent" parent="." instance=ExtResource( 4 )]
 
 [node name="MoveComponent" parent="." instance=ExtResource( 2 )]
+move_speed = 10.0
 
 [node name="ControlComponent" parent="." instance=ExtResource( 3 )]
