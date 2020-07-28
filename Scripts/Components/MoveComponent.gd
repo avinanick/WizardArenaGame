@@ -21,7 +21,12 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	# I'm not a fan of the way godot orients 3d axis, for now I'll do: +z is horizontal right,
+	# +x is horizontal up, and +y is vertical up
+	# for now I'm using move_and_collide, I may later decide on move_and_slide depending on 
+	# behavior
+	var movement: Vector3 = Vector3(move_direction.y, 0, move_direction.x)
+	main_body.move_and_collide(movement * delta)
 
 func add_movement(var direction):
 	set_process(true)
