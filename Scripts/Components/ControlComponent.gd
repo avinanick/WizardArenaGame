@@ -1,12 +1,12 @@
 extends "res://Scripts/Components/Component.gd"
 
 
-var player_character: bool = false setget set_player_character, get_player_character
+export var player_character: bool = false setget set_player_character, get_player_character
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	set_process(player_character)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
