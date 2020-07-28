@@ -10,6 +10,7 @@ var current_directions: Dictionary = {"Up":false,
 									"Right":false}
 
 signal end_move
+signal moving_direction
 signal start_move
 
 # Called when the node enters the scene tree for the first time.
@@ -44,6 +45,7 @@ func calculate_overall_move():
 	if current_directions["Right"]:
 		move_direction.x += 1
 	move_direction = move_direction.normalized()
+	emit_signal("moving_direction", move_direction)
 
 func receive_message(var message: Dictionary):
 	if message.has("StartMove"):
