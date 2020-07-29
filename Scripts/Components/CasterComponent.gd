@@ -1,16 +1,23 @@
 extends "res://Scripts/Components/Component.gd"
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+signal cast_spell
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	connect("cast_spell", self, "cast_spell")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+func cast_spell(var spell_number: int):
+	var spell_to_cast = get_child(spell_number)
+	if spell_to_cast:
+		print("Impliment spell casting")
+
+func receive_message(var message: Dictionary):
+	if message.has("CastSpell"):
+		emit_signal("cast_spell", message["CastSpell"])
