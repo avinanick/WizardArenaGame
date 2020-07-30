@@ -16,7 +16,9 @@ func _ready():
 func cast_spell(var spell_number: int):
 	var spell_to_cast = get_child(spell_number)
 	if spell_to_cast:
-		print("Impliment spell casting")
+		spell_to_cast.target_spell()
+	else:
+		print("No spell for slot ", spell_number)
 
 func receive_message(var message: Dictionary):
 	if message.has("CastSpell"):
