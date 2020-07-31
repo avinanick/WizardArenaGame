@@ -35,17 +35,29 @@ func physics_process(_delta):
 #	pass
 
 func activate_spell():
+	var spawn_location: Vector3 = Vector3(0,0,0)
+	if not spell_effect:
+		print("Error: No spell effect assigned to spell")
+		return
+	var new_spell_effect = spell_effect.instance()
+	get_tree().current_scene.add_child(new_spell_effect)
 	if is_targeted_spell:
-		print("This should drop a new spell effect at the target location, or as close as possible")
-		var spawn_location: Vector3 = Vector3(self.global_transform.origin.x, target.y, target.x)
-		if not spell_effect:
-			print("Error: No spell effect assigned to spell")
-			return
-		var new_spell_effect = spell_effect.instance()
-		new_spell_effect.global_transform = spawn_location
-		
+		# This should spawn the spell effect as close to the target location as possible
+		spawn_location = Vector3(self.global_transform.origin.x, target.y, target.x)
+		if self.global_transform.origin.distance_to(spawn_location) > spell_range:
+			# Spawn the effect at the edge of max range if the mouse is outside that range
+			var target_direction = to_local(Vector3(self.global_transform.origin.x, target.y, target.x))
+			target_direction = target_direction.normalized() * spell_range
+			spawn_location = to_global(target_direction) 
 	else:
-		print("This should create the spell effect and launch it in the target direction")
+		# This should create the spell effect and launch it in the target direction
+		var target_direction = to_local(Vector3(self.global_transform.origin.x, target.y, target.x))
+		target_direction = target_direction.normalized() * 0.6
+		spawn_location = to_global(target_direction)
+		# This also needs to set the spell effect velocity here
+		print("Impliment adding spell velocity!")
+	new_spell_effect.global_transform = spawn_location
+	# At this point, the new spell effect needs to be set off, or something
 
 func target_spell():
 	targeting_spell = true
