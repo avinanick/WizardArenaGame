@@ -1,4 +1,4 @@
-extends "res://Scripts/Components/Component.gd"
+extends "res://Components/Component.gd"
 
 
 signal cast_spell

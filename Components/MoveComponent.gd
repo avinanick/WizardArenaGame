@@ -1,4 +1,4 @@
-extends "res://Scripts/Components/Component.gd"
+extends "res://Components/Component.gd"
 
 
 export var move_speed: float = 1.0 

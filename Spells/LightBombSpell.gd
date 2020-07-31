@@ -1,9 +1,9 @@
-extends "res://Scripts/Components/Component.gd"
+extends "res://Spells/Spell.gd"
 
 
-export var health_points: int = 100
-
-signal taking_damage
+# Declare member variables here. Examples:
+# var a = 2
+# var b = "text"
 
 
 # Called when the node enters the scene tree for the first time.
@@ -15,6 +15,5 @@ func _ready():
 #func _process(delta):
 #	pass
 
-func receive_message(var message: Dictionary):
-	if message.has("Damage"):
-		emit_signal("taking_damage", message["Damage"])
+func activate_spell():
+	pass

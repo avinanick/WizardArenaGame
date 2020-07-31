@@ -1,4 +1,4 @@
-extends "res://Scripts/Components/Component.gd"
+extends "res://Components/Component.gd"
 
 
 export var player_character: bool = true setget set_player_character, get_player_character
