@@ -15,6 +15,11 @@ func _ready():
 
 func activate_effect():
 	$AnimationPlayer.play("detonate")
+	detonating = true
+	var bodies_within = $Area.get_overlapping_bodies()
+	for body in bodies_within:
+		if body.has_method("propagate_message"):
+			body.propagate_message({"Damage": effect_damage})
 
 # Called when an explostion animation finishes, at which point this effect should be deleted
 func finish_detonation():
@@ -24,5 +29,4 @@ func finish_detonation():
 # the body.
 func damage_body(var body):
 	if detonating and body.has_method("propagate_message"):
-		pass
-	pass
+		body.propagate_message({"Damage": effect_damage})

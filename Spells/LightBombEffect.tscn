@@ -153,6 +153,8 @@ radius = 0.3
 
 [node name="LightBombEffect" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+effect_damage = 10
+effect_delay = 2.0
 
 [node name="MeshInstance" type="MeshInstance" parent="." index="1"]
 mesh = SubResource( 2 )
