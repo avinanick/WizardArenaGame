@@ -58,6 +58,8 @@ func activate_spell():
 		print("Impliment adding spell velocity!")
 	new_spell_effect.global_transform = spawn_location
 	# At this point, the new spell effect needs to be set off, or something
+	new_spell_effect.set_direction(Vector2(to_local(spawn_location).z, to_local(spawn_location).x))
+	new_spell_effect.start_spell_effect()
 
 func target_spell():
 	targeting_spell = true
