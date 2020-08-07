@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Spells/SpellEffect.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Spells/LightBombEffect.gd" type="Script" id=2]
 
 [sub_resource type="SpatialMaterial" id=1]
 flags_transparent = true
@@ -151,7 +152,7 @@ tracks/4/keys = {
 radius = 0.3
 
 [node name="LightBombEffect" instance=ExtResource( 1 )]
-effect_delay = 2.0
+script = ExtResource( 2 )
 
 [node name="MeshInstance" type="MeshInstance" parent="." index="1"]
 mesh = SubResource( 2 )
@@ -166,3 +167,4 @@ anims/idle = SubResource( 4 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Area" index="0"]
 shape = SubResource( 5 )
+[connection signal="body_entered" from="Area" to="." method="damage_body"]
