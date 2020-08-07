@@ -1,7 +1,9 @@
 extends Spatial
 
 
+export var effect_damage: int = 0
 export var effect_delay: float = 0
+export var effect_knockback: float = 0
 var effect_direction: Vector2 = Vector2(0,0) setget set_direction, get_direction
 
 
