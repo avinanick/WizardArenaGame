@@ -28,6 +28,12 @@ func _process(_delta):
 		main_body.propagate_message({"EndMove":"Right"})
 	if Input.is_action_just_released("move_down"):
 		main_body.propagate_message({"EndMove":"Down"})
+	if Input.is_action_just_pressed("cast_spell_one"):
+		main_body.propagate_message({"CastSpell":0})
+	if Input.is_action_just_pressed("cast_spell_two"):
+		main_body.propagate_message({"CastSpell":1})
+	if Input.is_action_just_pressed("cast_spell_three"):
+		main_body.propagate_message({"CastSpell":2})
 
 func get_player_character() -> bool:
 	return player_character
