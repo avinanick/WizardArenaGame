@@ -30,3 +30,7 @@ func finish_detonation():
 func damage_body(var body):
 	if detonating and body.has_method("propagate_message"):
 		body.propagate_message({"Damage": effect_damage})
+
+func _on_AnimationPlayer_animation_finished(anim_name: String):
+	if anim_name == "detonate":
+		finish_detonation()
