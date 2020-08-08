@@ -22,12 +22,12 @@ func _ready():
 
 func physics_process(_delta):
 	if targeting_spell:
+		print("Targeting ", spell_name)
 		if not camera:
 			print("Error: no camera detected for spell casting!")
 		else:
 			var mouse_intersect: Vector3 = camera.project_ray_origin(get_viewport().get_mouse_position())
 			target = Vector2(mouse_intersect.z, mouse_intersect.y)
-			targeting_spell = false
 			activate_spell()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -35,6 +35,9 @@ func physics_process(_delta):
 #	pass
 
 func activate_spell():
+	print("Activating ", self.spell_name)
+	targeting_spell = false
+	set_physics_process(false)
 	var spawn_location: Vector3 = Vector3(0,0,0)
 	if not spell_effect:
 		print("Error: No spell effect assigned to spell")
@@ -56,10 +59,17 @@ func activate_spell():
 		spawn_location = to_global(target_direction)
 		# This also needs to set the spell effect velocity here
 		print("Impliment adding spell velocity!")
-	new_spell_effect.global_transform = spawn_location
+	new_spell_effect.global_transform.origin = spawn_location
 	# At this point, the new spell effect needs to be set off, or something
 	new_spell_effect.set_direction(Vector2(to_local(spawn_location).z, to_local(spawn_location).x))
 	new_spell_effect.start_spell_effect()
 
 func target_spell():
 	targeting_spell = true
+	print("Targeting spell: ", targeting_spell)
+	if not camera:
+		print("Error: no camera detected for spell casting!")
+	else:
+		var mouse_intersect: Vector3 = camera.project_ray_origin(get_viewport().get_mouse_position())
+		target = Vector2(mouse_intersect.z, mouse_intersect.y)
+		activate_spell()
