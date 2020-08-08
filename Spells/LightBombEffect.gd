@@ -6,6 +6,8 @@ var detonating: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var unique_mesh = $MeshInstance.mesh.duplicate()
+	$MeshInstance.mesh = unique_mesh
 	pass # Replace with function body.
 
 
@@ -14,6 +16,7 @@ func _ready():
 #	pass
 
 func activate_effect():
+	print("Detonating ", self.name)
 	$AnimationPlayer.play("detonate")
 	detonating = true
 	var bodies_within = $Area.get_overlapping_bodies()
