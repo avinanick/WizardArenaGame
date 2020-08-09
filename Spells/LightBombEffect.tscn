@@ -5,78 +5,66 @@
 
 [sub_resource type="SpatialMaterial" id=1]
 flags_transparent = true
-albedo_color = Color( 1, 0.984314, 0, 0.483371 )
+albedo_color = Color( 1, 0.984314, 0, 0.439216 )
 emission_enabled = true
 emission = Color( 0.992157, 1, 0, 1 )
-emission_energy = 0.438448
+emission_energy = 0.5
 emission_operator = 0
 emission_on_uv2 = false
 
 [sub_resource type="SphereMesh" id=2]
 material = SubResource( 1 )
-radius = 0.3
-height = 0.6
+radius = 3.0
+height = 6.0
 radial_segments = 16
 rings = 8
 
 [sub_resource type="Animation" id=3]
 resource_name = "detonate"
-length = 0.5
+length = 0.1
 tracks/0/type = "value"
-tracks/0/path = NodePath("Area/CollisionShape:shape:radius")
+tracks/0/path = NodePath("MeshInstance:mesh:radius")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 0.3, 3.0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("MeshInstance:mesh:radius")
+tracks/1/path = NodePath("MeshInstance:mesh:height")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0.3, 3.0 ]
+"values": [ 0.6, 6.0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("MeshInstance:mesh:height")
+tracks/2/path = NodePath("MeshInstance:mesh:material:albedo_color")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0.6, 6.0 ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("MeshInstance:mesh:material:albedo_color")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Color( 1, 0.984314, 0, 0.439216 ) ]
 }
-tracks/4/type = "value"
-tracks/4/path = NodePath("MeshInstance:mesh:material:emission_energy")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
+tracks/3/type = "value"
+tracks/3/path = NodePath("MeshInstance:mesh:material:emission_energy")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -135,21 +123,9 @@ tracks/3/keys = {
 "update": 0,
 "values": [ 0.6 ]
 }
-tracks/4/type = "value"
-tracks/4/path = NodePath("Area/CollisionShape:shape:radius")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.3 ]
-}
 
 [sub_resource type="SphereShape" id=5]
-radius = 0.3
+radius = 3.0
 
 [node name="LightBombEffect" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -170,4 +146,3 @@ anims/idle = SubResource( 4 )
 [node name="CollisionShape" type="CollisionShape" parent="Area" index="0"]
 shape = SubResource( 5 )
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
-[connection signal="body_entered" from="Area" to="." method="damage_body"]

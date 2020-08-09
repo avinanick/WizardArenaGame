@@ -19,13 +19,13 @@ func activate_effect():
 	print("Detonating ", self.name)
 	$AnimationPlayer.play("detonate")
 	detonating = true
+
+# Called when an explostion animation finishes, at which point this effect should be deleted
+func finish_detonation():
 	var bodies_within = $Area.get_overlapping_bodies()
 	for body in bodies_within:
 		if body.has_method("propagate_message"):
 			body.propagate_message({"Damage": effect_damage})
-
-# Called when an explostion animation finishes, at which point this effect should be deleted
-func finish_detonation():
 	self.queue_free()
 
 # Called when a body enters the area, should check if the light bomb is detonating, if so, damage
