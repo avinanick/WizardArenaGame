@@ -64,3 +64,4 @@ material/0 = null
 [node name="CollisionShape" type="CollisionShape" parent="Area" index="0"]
 shape = SubResource( 4 )
 script = ExtResource( 3 )
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
