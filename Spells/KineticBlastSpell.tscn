@@ -6,3 +6,4 @@
 [node name="KineticBlastSpell" instance=ExtResource( 1 )]
 spell_range = 5.0
 spell_effect = ExtResource( 2 )
+spell_name = "Kinetic Blast"
