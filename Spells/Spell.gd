@@ -11,6 +11,8 @@ var camera: Camera
 var targeting_spell: bool = false
 var target: Vector2 = Vector2(0,0)
 
+var mouse_intersect: Vector3
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,17 +20,6 @@ func _ready():
 	if not camera:
 		print("Error: no camera detected for spell casting!")
 	pass # Replace with function body.
-
-
-func physics_process(_delta):
-	if targeting_spell:
-		print("Targeting ", spell_name)
-		if not camera:
-			print("Error: no camera detected for spell casting!")
-		else:
-			var mouse_intersect: Vector3 = camera.project_ray_origin(get_viewport().get_mouse_position())
-			target = Vector2(mouse_intersect.z, mouse_intersect.y)
-			activate_spell()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -49,12 +40,12 @@ func activate_spell():
 		spawn_location = Vector3(target.y, self.global_transform.origin.x, target.x)
 		if self.global_transform.origin.distance_to(spawn_location) > spell_range:
 			# Spawn the effect at the edge of max range if the mouse is outside that range
-			var target_direction = to_local(Vector3(target.y, self.global_transform.origin.x, target.x))
+			var target_direction = to_local(Vector3(target.y, self.global_transform.origin.y, target.x))
 			target_direction = target_direction.normalized() * spell_range
 			spawn_location = to_global(target_direction) 
 	else:
 		# This should create the spell effect and launch it in the target direction
-		var target_direction = to_local(Vector3(target.y, self.global_transform.origin.x, target.x))
+		var target_direction = to_local(Vector3(target.y, self.global_transform.origin.y, target.x))
 		target_direction = target_direction.normalized() * 0.6
 		spawn_location = to_global(target_direction)
 		# This also needs to set the spell effect velocity here
@@ -70,6 +61,15 @@ func target_spell():
 	if not camera:
 		print("Error: no camera detected for spell casting!")
 	else:
-		var mouse_intersect: Vector3 = camera.project_ray_origin(get_viewport().get_mouse_position())
-		target = Vector2(mouse_intersect.z, mouse_intersect.y)
+		#var mouse_intersect: Vector3 = camera.project_ray_origin(get_viewport().get_mouse_position())
+		#target = Vector2(mouse_intersect.z, mouse_intersect.y)
+		mouse_intersect = camera.project_ray_origin(get_viewport().get_mouse_position())
+		var position2D: Vector2 = get_viewport().get_mouse_position()
+		var dropPlane  = Plane(Vector3(0, 1, 0), 1)
+		var position3D = dropPlane.intersects_ray(
+                             camera.project_ray_origin(position2D),
+                             camera.project_ray_normal(position2D))
+		print(mouse_intersect)
+		print(position3D)
+		target = Vector2(position3D.z, position3D.x)
 		activate_spell()
