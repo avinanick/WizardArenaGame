@@ -38,7 +38,7 @@ func _process(delta):
 		var collision_info = main_body.move_and_collide(slide_movement)
 		slide_vector.x -= slide_movement.z
 		slide_vector.y -= slide_movement.x
-		if slide_vector.length() <= 0:
+		if slide_vector.length() <= 0.01:
 			end_slide()
 		if collision_info:
 			handle_collision(collision_info)
@@ -55,8 +55,9 @@ func add_movement(var direction):
 		calculate_overall_move()
 
 func begin_slide(var direction: Vector2):
+	print("Starting slide")
 	sliding = true
-	move_direction = direction
+	slide_vector = direction
 	set_process(true)
 
 func calculate_overall_move():
@@ -73,6 +74,7 @@ func calculate_overall_move():
 	emit_signal("moving_direction", move_direction)
 
 func end_slide():
+	print("Ending slide")
 	sliding = false
 	calculate_overall_move()
 	if move_direction.length() < 0.5:
