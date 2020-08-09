@@ -6,7 +6,7 @@
 
 [sub_resource type="Animation" id=1]
 resource_name = "detonate"
-length = 0.1
+length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("MeshInstance:mesh:top_radius")
 tracks/0/interp = 1
@@ -14,7 +14,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1 ),
+"times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 0.001, 4.0 ]
@@ -26,7 +26,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1 ),
+"times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 0.001, 4.0 ]
@@ -38,8 +38,8 @@ albedo_color = Color( 0.643137, 0, 0.776471, 0.560784 )
 
 [sub_resource type="CylinderMesh" id=3]
 material = SubResource( 2 )
-top_radius = 4.0
-bottom_radius = 4.0
+top_radius = 0.001
+bottom_radius = 0.001
 height = 1.0
 radial_segments = 16
 rings = 2
