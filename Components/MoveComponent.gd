@@ -2,6 +2,7 @@ extends "res://Components/Component.gd"
 
 
 export var move_speed: float = 1.0 
+export var slide_speed: float = 1.5
 
 var move_direction: Vector2 = Vector2(0,0)
 var current_directions: Dictionary = {"Up":false,
@@ -9,6 +10,7 @@ var current_directions: Dictionary = {"Up":false,
 									"Left":false,
 									"Right":false}
 var sliding: bool = false
+var slide_vector: Vector2
 
 signal end_move
 signal ending_slide
@@ -31,10 +33,20 @@ func _process(delta):
 	# +x is horizontal up, and +y is vertical up
 	# for now I'm using move_and_collide, I may later decide on move_and_slide depending on 
 	# behavior
-	var movement: Vector3 = Vector3(move_direction.y, 0, move_direction.x)
-	var collision_info = main_body.move_and_collide(movement * delta * move_speed)
-	if collision_info:
-		handle_collision(collision_info)
+	if sliding:
+		var slide_movement: Vector3 = Vector3(slide_vector.y, 0, slide_vector.x).normalized() * slide_speed * delta
+		var collision_info = main_body.move_and_collide(slide_movement)
+		slide_vector.x -= slide_movement.z
+		slide_vector.y -= slide_movement.x
+		if slide_vector.length() <= 0:
+			end_slide()
+		if collision_info:
+			handle_collision(collision_info)
+	else:
+		var movement: Vector3 = Vector3(move_direction.y, 0, move_direction.x)
+		var collision_info = main_body.move_and_collide(movement * delta * move_speed)
+		if collision_info:
+			handle_collision(collision_info)
 
 func add_movement(var direction):
 	set_process(true)
