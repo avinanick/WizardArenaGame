@@ -23,7 +23,12 @@ func finish_detonation():
 	var bodies_within = $Area.get_overlapping_bodies()
 	for body in bodies_within:
 		if body.has_method("propagate_message"):
-			body.propagate_message({"StartSlide": effect_knockback})
+			# Get the direction to the body, set the length of that vector to the effect 
+			# knockback, and send that in the message
+			var direction_vector: Vector3 = body.global_transform.origin - self.global_transform.origin
+			var knockback_vector: Vector2 = Vector2(direction_vector.z, direction_vector.x)
+			knockback_vector = knockback_vector.normalized() * effect_knockback
+			body.propagate_message({"StartSlide": knockback_vector})
 	self.queue_free()
 
 # Called when a body enters the area, should check if the light bomb is detonating, if so, damage
