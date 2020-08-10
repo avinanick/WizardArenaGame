@@ -2,7 +2,7 @@ extends "res://Components/Component.gd"
 
 
 export var move_speed: float = 1.0 
-export var slide_speed: float = 1.5
+export var slide_speed: float = 15
 
 var move_direction: Vector2 = Vector2(0,0)
 var current_directions: Dictionary = {"Up":false,
