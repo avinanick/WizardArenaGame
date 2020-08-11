@@ -18,4 +18,4 @@ mesh = SubResource( 2 )
 material/0 = null
 
 [node name="Wizard" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.31751, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
