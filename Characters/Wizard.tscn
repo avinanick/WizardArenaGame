@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Components/ControlComponent.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Components/HealthComponent.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Components/CasterComponent.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Spells/LightBombSpell.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Spells/KineticBlastSpell.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Spells/ConjureStoneSpell.tscn" type="PackedScene" id=8]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -38,3 +39,5 @@ move_speed = 10.0
 [node name="LightBombSpell" parent="CasterComponent" instance=ExtResource( 6 )]
 
 [node name="KineticBlastSpell" parent="CasterComponent" instance=ExtResource( 7 )]
+
+[node name="ConjureStoneSpell" parent="CasterComponent" instance=ExtResource( 8 )]
