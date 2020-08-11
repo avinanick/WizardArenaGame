@@ -15,3 +15,7 @@ func _ready():
 
 func activate_effect():
 	print("Summoning stone wall")
+	var new_wall = stone_wall_scene.instance()
+	get_tree().current_scene.add_child(new_wall)
+	new_wall.global_transform.origin = self.global_transform.origin
+	self.queue_free()
