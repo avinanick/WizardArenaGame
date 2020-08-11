@@ -34,6 +34,15 @@ func _process(_delta):
 		main_body.propagate_message({"CastSpell":1})
 	if Input.is_action_just_pressed("cast_spell_three"):
 		main_body.propagate_message({"CastSpell":2})
+	set_cursor_position()
+
+func set_cursor_position():
+	var position2D: Vector2 = get_viewport().get_mouse_position()
+	var dropPlane  = Plane(Vector3(0, 1, 0), 1.5)
+	var position3D = dropPlane.intersects_ray(
+							$Camera.project_ray_origin(position2D),
+							$Camera.project_ray_normal(position2D) * 1000)
+	$Cursor.global_transform.origin = position3D
 
 func get_player_character() -> bool:
 	return player_character
