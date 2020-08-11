@@ -9,9 +9,7 @@ export var spell_cooldown: float = 2.0
 
 var camera: Camera
 var targeting_spell: bool = false
-var target: Vector2 = Vector2(0,0)
-
-var mouse_intersect: Vector3
+var target: Vector3 = Vector3(0,0,0)
 
 
 # Called when the node enters the scene tree for the first time.
@@ -37,15 +35,18 @@ func activate_spell():
 	get_tree().current_scene.add_child(new_spell_effect)
 	if is_targeted_spell:
 		# This should spawn the spell effect as close to the target location as possible
-		spawn_location = Vector3(target.y, self.global_transform.origin.x, target.x)
+		spawn_location = target
+		spawn_location.y = self.global_transform.origin.y
 		if self.global_transform.origin.distance_to(spawn_location) > spell_range:
 			# Spawn the effect at the edge of max range if the mouse is outside that range
-			var target_direction = to_local(Vector3(target.y, self.global_transform.origin.y, target.x))
+			var target_direction = to_local(target)
+			target_direction.y = 0
 			target_direction = target_direction.normalized() * spell_range
 			spawn_location = to_global(target_direction) 
 	else:
 		# This should create the spell effect and launch it in the target direction
-		var target_direction = to_local(Vector3(target.y, self.global_transform.origin.y, target.x))
+		var target_direction = to_local(target)
+		target_direction.y = 0
 		target_direction = target_direction.normalized() * 0.6
 		spawn_location = to_global(target_direction)
 		# This also needs to set the spell effect velocity here
@@ -63,13 +64,11 @@ func target_spell():
 	else:
 		#var mouse_intersect: Vector3 = camera.project_ray_origin(get_viewport().get_mouse_position())
 		#target = Vector2(mouse_intersect.z, mouse_intersect.y)
-		mouse_intersect = camera.project_ray_origin(get_viewport().get_mouse_position())
 		var position2D: Vector2 = get_viewport().get_mouse_position()
-		var dropPlane  = Plane(Vector3(0, 1, 0), 1)
+		var dropPlane  = Plane(Vector3(0, 1, 0), 1.5)
 		var position3D = dropPlane.intersects_ray(
                              camera.project_ray_origin(position2D),
-                             camera.project_ray_normal(position2D))
-		print(mouse_intersect)
+                             camera.project_ray_normal(position2D) * 1000)
 		print(position3D)
-		target = Vector2(position3D.z, position3D.x)
+		target = position3D
 		activate_spell()
