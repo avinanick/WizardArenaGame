@@ -1,8 +1,18 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [sub_resource type="BoxShape" id=1]
 
-[sub_resource type="CubeMesh" id=2]
+[sub_resource type="OpenSimplexNoise" id=2]
+
+[sub_resource type="NoiseTexture" id=3]
+noise = SubResource( 2 )
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0.541176, 0.541176, 0.541176, 1 )
+albedo_texture = SubResource( 3 )
+
+[sub_resource type="CubeMesh" id=5]
+material = SubResource( 4 )
 
 [node name="StoneWall" type="KinematicBody"]
 
@@ -10,5 +20,5 @@
 shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
-mesh = SubResource( 2 )
+mesh = SubResource( 5 )
 material/0 = null
