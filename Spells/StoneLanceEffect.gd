@@ -18,4 +18,8 @@ func _process(delta):
 		print("Handle collision")
 
 func activate_effect():
+	var angle = rad2deg(atan(effect_direction.y / effect_direction.x))
+	if effect_direction.x < 0:
+		angle = 180 - angle
+	self.rotation_degrees = Vector3(0,angle,0)
 	$AnimationPlayer.play("spear_strike")
