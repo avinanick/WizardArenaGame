@@ -12,5 +12,10 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	var collision_info = $KinematicBody.move_and_collide(Vector3(0,0,effect_speed) * delta)
+	if collision_info:
+		print("Handle collision")
+
+func activate_effect():
+	$AnimationPlayer.play("spear_strike")
