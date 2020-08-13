@@ -26,7 +26,7 @@ func activate_effect():
 
 # Called when the lance collides with a physics body
 func lance_impact(var collision_info: KinematicCollision):
-	if not collision_info.collider is spell_caster:
+	if not collision_info.collider == spell_caster:
 		var velocity_vector: Vector3 = collision_info.collider.global_transform.origin - self.global_transform.origin
 		velocity_vector.y = 0
 		velocity_vector = velocity_vector.normalized() * effect_knockback
