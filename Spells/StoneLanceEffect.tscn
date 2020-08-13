@@ -38,6 +38,10 @@ radius = 0.05
 
 [node name="StoneLanceEffect" instance=ExtResource( 2 )]
 script = ExtResource( 1 )
+effect_damage = 5
+effect_delay = null
+effect_knockback = 4.0
+effect_speed = 10.0
 
 [node name="AnimationPlayer" parent="." index="1"]
 anims/spear_strike = SubResource( 1 )

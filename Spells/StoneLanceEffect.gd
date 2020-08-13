@@ -15,7 +15,7 @@ func _ready():
 func _process(delta):
 	var collision_info = $KinematicBody.move_and_collide(Vector3(0,0,effect_speed) * delta)
 	if collision_info:
-		print("Handle collision")
+		lance_impact(collision_info)
 
 func activate_effect():
 	var angle = rad2deg(atan(effect_direction.y / effect_direction.x))
@@ -23,3 +23,16 @@ func activate_effect():
 		angle = 180 - angle
 	self.rotation_degrees = Vector3(0,angle,0)
 	$AnimationPlayer.play("spear_strike")
+
+# Called when the lance collides with a physics body
+func lance_impact(var collision_info: KinematicCollision):
+	if not collision_info.collider is spell_caster:
+		var velocity_vector: Vector3 = collision_info.collider.global_transform.origin - self.global_transform.origin
+		velocity_vector.y = 0
+		velocity_vector = velocity_vector.normalized() * effect_knockback
+		var knockback: Vector2 = Vector2(velocity_vector.z, velocity_vector.x)
+		if collision_info.collider.has_method("propagate_message"):
+			collision_info.collider.propagate_message({"StartSlide": knockback,
+														"Damage": effect_damage})
+		spell_caster.propagate_message({"StartSlide": knockback * -0.5})
+	self.queue_free()
