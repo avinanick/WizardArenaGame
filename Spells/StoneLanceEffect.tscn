@@ -57,3 +57,4 @@ material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="KinematicBody" index="0"]
 shape = SubResource( 6 )
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

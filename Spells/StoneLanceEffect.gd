@@ -36,3 +36,8 @@ func lance_impact(var collision_info: KinematicCollision):
 														"Damage": effect_damage})
 		spell_caster.propagate_message({"StartSlide": knockback * -0.5})
 	self.queue_free()
+
+func _on_AnimationPlayer_animation_finished(anim_name: String):
+	if anim_name == "spear_strike":
+		print("Better end of strike handling?")
+		self.queue_free()
