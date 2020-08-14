@@ -5,7 +5,7 @@
 [ext_resource path="res://Components/MoveComponent.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Components/ComponentManager.gd" type="Script" id=4]
 [ext_resource path="res://Components/CasterComponent.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Spells/LightBombSpell.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Spells/StoneLanceSpell.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Spells/KineticBlastSpell.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Spells/ConjureStoneSpell.tscn" type="PackedScene" id=8]
 
@@ -36,8 +36,8 @@ move_speed = 10.0
 
 [node name="CasterComponent" parent="." instance=ExtResource( 5 )]
 
-[node name="LightBombSpell" parent="CasterComponent" instance=ExtResource( 6 )]
-
 [node name="KineticBlastSpell" parent="CasterComponent" instance=ExtResource( 7 )]
 
 [node name="ConjureStoneSpell" parent="CasterComponent" instance=ExtResource( 8 )]
+
+[node name="StoneLanceSpell" parent="CasterComponent" instance=ExtResource( 6 )]
