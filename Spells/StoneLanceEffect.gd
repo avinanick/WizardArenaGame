@@ -20,7 +20,7 @@ func _process(delta):
 func activate_effect():
 	var angle = rad2deg(atan(effect_direction.y / effect_direction.x))
 	if effect_direction.x < 0:
-		angle = 180 - angle
+		angle = 180 + angle
 	self.rotation_degrees = Vector3(0,angle,0)
 	$AnimationPlayer.play("spear_strike")
 
@@ -35,7 +35,7 @@ func lance_impact(var collision_info: KinematicCollision):
 			collision_info.collider.propagate_message({"StartSlide": knockback,
 														"Damage": effect_damage})
 		spell_caster.propagate_message({"StartSlide": knockback * -0.5})
-	self.queue_free()
+		self.queue_free()
 
 func _on_AnimationPlayer_animation_finished(anim_name: String):
 	if anim_name == "spear_strike":
