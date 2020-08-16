@@ -13,7 +13,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var collision_info = $KinematicBody.move_and_collide(Vector3(0,0,effect_speed) * delta)
+	var collision_info = $KinematicBody.move_and_collide(Vector3(effect_direction.y,0,effect_direction.x).normalized() * effect_speed * delta)
 	if collision_info:
 		lance_impact(collision_info)
 
