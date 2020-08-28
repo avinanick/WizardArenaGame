@@ -1,4 +1,7 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Obstacles/StoneWall.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Characters/Wizard.tscn" type="PackedScene" id=2]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 20, 1, 20 )
@@ -38,6 +41,7 @@ size = Vector3( 2, 2, 40 )
 shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="ArenaGround"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0538368, -0.0358677, 0.00248909 )
 mesh = SubResource( 2 )
 material/0 = null
 
@@ -80,3 +84,78 @@ shape = SubResource( 9 )
 [node name="MeshInstance" type="MeshInstance" parent="ArenaBumperWest"]
 mesh = SubResource( 10 )
 material/0 = null
+
+[node name="StoneWall" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+
+[node name="StoneWall2" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 2, 0 )
+
+[node name="StoneWall3" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 2, 2 )
+
+[node name="StoneWall4" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 2, -2 )
+
+[node name="StoneWall5" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 2, 6 )
+
+[node name="StoneWall6" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 2, 4 )
+
+[node name="StoneWall7" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 2, 0 )
+
+[node name="StoneWall8" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 2, 2 )
+
+[node name="StoneWall9" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 2, -2 )
+
+[node name="StoneWall10" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 2, -4 )
+
+[node name="StoneWall11" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 2, 4 )
+
+[node name="StoneWall12" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, -13 )
+
+[node name="StoneWall13" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, -13 )
+
+[node name="StoneWall14" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, -13 )
+
+[node name="StoneWall15" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -13 )
+
+[node name="StoneWall16" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, -13 )
+
+[node name="StoneWall17" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2, 13 )
+
+[node name="StoneWall18" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, 13 )
+
+[node name="StoneWall19" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 13 )
+
+[node name="StoneWall20" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 13 )
+
+[node name="StoneWall21" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, 13 )
+
+[node name="Wizard" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 16 )
+
+[node name="Wizard2" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -16 )
+
+[node name="Wizard3" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 2, 0 )
+
+[node name="Wizard4" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 2, 0 )
