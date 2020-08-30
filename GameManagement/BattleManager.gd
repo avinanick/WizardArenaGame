@@ -1,9 +1,7 @@
 extends Spatial
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var defeated_wizards: Array = []
 
 
 # Called when the node enters the scene tree for the first time.
@@ -20,6 +18,16 @@ func _ready():
 
 func choose_main_player():
 	var arena_wizards = get_tree().get_nodes_in_group("Wizards")
-	var chosen_wizard = arena_wizards[randi() % arena_wizards.size()]
-	print("Set the chosen wizard as the main")
-	chosen_wizard.propagate_message({"MakeMain":true})
+	arena_wizards.shuffle()
+	for i in range(arena_wizards.size()):
+		print("Set the chosen wizard as the main")
+		arena_wizards[i].propagate_message({"AssignPlayer":i})
+
+# This should be called when a wizard runs out of health, check how many wizards 
+# remain and, if only one, then that one is the winner.
+func on_wizard_defeated(var player_number: int):
+	defeated_wizards.append(player_number)
+	var arena_wizards = get_tree().get_nodes_in_group("Wizards")
+	if defeated_wizards.size() == (arena_wizards.size() - 1):
+		print("Only one wizard remains! Credit the victor!")
+	pass
