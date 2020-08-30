@@ -43,3 +43,4 @@ move_speed = 10.0
 [node name="ConjureStoneSpell" parent="CasterComponent" instance=ExtResource( 8 )]
 
 [node name="StoneLanceSpell" parent="CasterComponent" instance=ExtResource( 6 )]
+[connection signal="health_depleted" from="HealthComponent" to="ControlComponent" method="_on_health_depleted"]

@@ -61,3 +61,6 @@ func set_player_character(var value: bool):
 	set_process(value)
 	$Camera.make_current()
 	player_character = value
+
+func _on_health_depleted():
+	emit_signal("player_defeated", player_number)
