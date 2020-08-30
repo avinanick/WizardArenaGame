@@ -23,6 +23,11 @@ func choose_main_player():
 	for i in range(all_wizards.size()):
 		print("Set the chosen wizard as the main")
 		all_wizards[i].propagate_message({"AssignPlayer":i})
+		var control = all_wizards[i].get_node("ControlComponent")
+		if not control:
+			print("Error: Control component not found in wizard")
+			return
+		control.connect("player_defeated", self, "on_wizard_defeated")
 
 # This should be called when a wizard runs out of health, check how many wizards 
 # remain and, if only one, then that one is the winner.
