@@ -6,6 +6,8 @@ export var player_character: bool = false setget set_player_character, get_playe
 var player_number: int = -1
 var player_name: String = ""
 
+signal player_defeated
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
