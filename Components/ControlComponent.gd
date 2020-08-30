@@ -47,6 +47,11 @@ func set_cursor_position():
 func get_player_character() -> bool:
 	return player_character
 
+func receive_message(var message: Dictionary):
+	if message.has("AssignPlayer"):
+		print("Set up player stuff")
+	pass
+
 func set_player_character(var value: bool):
 	set_process(value)
 	player_character = value
