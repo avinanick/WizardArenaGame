@@ -1,13 +1,15 @@
 extends "res://Components/Component.gd"
 
 
-export var player_character: bool = true setget set_player_character, get_player_character
+export var player_character: bool = false setget set_player_character, get_player_character
+
+var player_number: int = -1
+var player_name: String = ""
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	set_process(player_character)
-	$Camera.make_current()
+	set_player_character(player_character)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -49,9 +51,11 @@ func get_player_character() -> bool:
 
 func receive_message(var message: Dictionary):
 	if message.has("AssignPlayer"):
-		print("Set up player stuff")
-	pass
+		self.player_number = message["AssignPlayer"]
+		if player_number == 0:
+			set_player_character(true)
 
 func set_player_character(var value: bool):
 	set_process(value)
+	$Camera.make_current()
 	player_character = value
